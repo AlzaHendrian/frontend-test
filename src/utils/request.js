@@ -5,30 +5,24 @@ const request = axios.create({
   timeout: 8000,
 });
 
-// Tambahkan interceptors jika diperlukan
 request.interceptors.request.use(
-    (config) => {
-      // Tambahkan headers khusus ke config
+    (config) => { 
       config.headers['Content-Type'] = 'application/json';
       config.headers['Accept-Language'] = 'en-US';
       return config;
     },
     (error) => {
-      // Tangani error sebelum permintaan dikirim
       return Promise.reject(error);
     }
   );
   
-  // Response interceptor
+ 
   request.interceptors.response.use(
-    (response) => {
-      // Modifikasi respons sebelum diteruskan ke then atau catch
+    (response) => {   
       return response;
     },
     (error) => {
-      // Tangani error global
-      if (error.response.status === 404) {
-        // Contoh: tangani not found error
+      if (error.response.status === 404) { 
         alert('Resource not found!');
       }
       return Promise.reject(error);

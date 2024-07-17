@@ -47,7 +47,7 @@ const store = createStore({
       if (!state.isLoading && state.currentPage <= state.totalPages) {
         commit('SET_LOADING', true);
         try {
-          const nextPage = state.currentPage + 1; // Mengambil halaman berikutnya
+          const nextPage = state.currentPage + 1;
           const response = await getArticles(nextPage, 1);
           const data = response.data;
           
@@ -66,7 +66,7 @@ const store = createStore({
     },
     async fetchNewArticles({ commit }) {
       try {
-        const response = await getArticles(1, 100, ''); // Misalnya, 100 artikel terbaru
+        const response = await getArticles(1, 100, '');
         const data = response.data;
         commit('SET_NEW_ARTICLES', data.articles);
       } catch (error) {
