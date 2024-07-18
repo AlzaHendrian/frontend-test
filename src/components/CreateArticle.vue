@@ -1,6 +1,6 @@
 <template>
-  <div class="max-w-2xl mx-auto p-8">
-    <h1 class="text-2xl font-bold mb-8">Create New Article</h1>
+  <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+    <h1 class="text-2xl font-bold mb-6 lg:mb-8">Create New Article</h1>
     <form @submit.prevent="handleSubmit">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
@@ -85,6 +85,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { Toastify } from '../main';
 export default {
   data() {
     return {
@@ -99,6 +100,11 @@ export default {
   },
   methods: {
     ...mapActions(['createArticle']),
+    confirmSubmit() {
+      if (window.confirm("Are you sure you want to submit this article?")) {
+        this.handleSubmit();
+      }
+    },
     async handleSubmit() {
       const article = {
         title: this.article.title,
@@ -107,8 +113,28 @@ export default {
         posted: this.article.posted,
         creator: this.article.creator,
       };
-      await this.createArticle(article);
-      this.$router.push('/');
+
+      try {
+        await this.createArticle(article);
+        Toastify({
+          text: "Sukses menambahkan artikel!",
+          duration: 8000,
+          close: true,
+          gravity: "top", 
+          position: "right", 
+          backgroundColor: "#06D001",
+        }).showToast();
+        this.$router.push('/');
+      } catch (error) {
+        Toastify({
+          text: "gagal menambahkan artikel!",
+          duration: 8000, 
+          close: true,
+          gravity: "top", 
+          position: "right",
+          backgroundColor: "red",
+        }).showToast();
+      }
     },
   },
 };
