@@ -1,13 +1,13 @@
 <template>
-  <div ref="scrollContainer">
-    <div class="flex justify-between w-[90%] mx-auto py-20 gap-14">
-      <div>
+  <div ref="scrollContainer" class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row justify-between w-full py-20 gap-14">
+      <div class="w-full lg:w-2/3">
         <div v-for="article in articles" :key="article.id"
-          class="w-[100%] mb-16 cursor-pointer article-container text-[#7A7A7A]" @click="goToDetail(article.id)">
-          <img :src="article.image" alt="article" width="90%">
-          <div class="w-[100%] p-6 shadow-xl">
-            <h1 class="text-justify text-[#2f2f2f] ">{{ article.title }}</h1>
-            <div class="flex mt-6 gap-4">
+          class="w-full mb-16 cursor-pointer article-container text-gray-700" @click="goToDetail(article.id)">
+          <img :src="article.image" alt="article" class="w-full">
+          <div class="w-full p-6 shadow-xl">
+            <h1 class="text-justify text-gray-800">{{ article.title }}</h1>
+            <div class="flex flex-col sm:flex-row mt-6 gap-4">
               <p class="color">{{ article.posted }}</p>
               <p>by Web {{ article.creator }}</p>
               <p>0 Comments</p>
@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <div class="w-[100%]">
+      <div class="w-full lg:w-1/3">
         <h1>Search</h1>
         <SearchFeature></SearchFeature>
 
@@ -33,7 +33,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -42,7 +41,6 @@ import { mapGetters, mapActions } from 'vuex';
 import debounce from 'lodash.debounce';
 import SearchFeature from './global/SearchFeature.vue';
 import NewArticle from './global/NewsArticle.vue';
-
 
 export default {
   name: 'ArticleList',
@@ -114,7 +112,6 @@ export default {
 </script>
 
 <style scoped>
-/* Kelas CSS yang ada */
 h1 {
   font-weight: bold;
   font-size: 24px;
