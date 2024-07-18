@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+
+console.log(process.env.VUE_APP_API_LOCAL, "<<< API URL from .env");
 const request = axios.create({
-  baseURL: 'http://localhost:5000/api/v1',
+  baseURL: process.env.VUE_APP_API_LOCAL,
   timeout: 8000,
 });
+
 
 request.interceptors.request.use(
     (config) => { 
