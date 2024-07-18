@@ -118,7 +118,7 @@ export default {
         await this.createArticle(article);
         Toastify({
           text: "Sukses menambahkan artikel!",
-          duration: 8000,
+          duration: 3000,
           close: true,
           gravity: "top", 
           position: "right", 
@@ -128,7 +128,7 @@ export default {
       } catch (error) {
         Toastify({
           text: "gagal menambahkan artikel!",
-          duration: 8000, 
+          duration: 3000, 
           close: true,
           gravity: "top", 
           position: "right",
