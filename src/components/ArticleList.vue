@@ -6,7 +6,7 @@
           class="w-full mb-16 cursor-pointer article-container text-gray-700" @click="goToDetail(article.id)">
           <img :src="article.image" alt="article" class="w-full">
           <div class="w-full p-6 shadow-xl">
-            <h1 class="text-justify text-gray-800">{{ article.title }}</h1>
+            <h1 class="lg:text-justify text-gray-800">{{ article.title }}</h1>
             <div class="flex flex-col sm:flex-row mt-6 gap-4">
               <p class="color">{{ article.posted }}</p>
               <p>by Web {{ article.creator }}</p>
